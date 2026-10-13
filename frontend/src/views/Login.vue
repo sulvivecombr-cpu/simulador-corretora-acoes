@@ -124,7 +124,7 @@ export default {
       this.error = ''
       
       try {
-        const response = await axios.post('http://localhost:3000/api/auth/login', {
+        const response = await axios.post('/api/auth/login', {
           email: this.email,
           senha: this.password
         })
@@ -143,7 +143,7 @@ export default {
       this.registerError = ''
       
       try {
-        await axios.post('http://localhost:3000/api/auth/criar-conta', {
+        await axios.post('/api/auth/criar-conta', {
           nome: this.registerData.nome,
           email: this.registerData.email,
           senha: this.registerData.senha

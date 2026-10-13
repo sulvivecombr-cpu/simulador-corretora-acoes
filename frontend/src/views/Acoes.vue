@@ -429,7 +429,7 @@ export default {
         }
 
         const endpoint = this.novaOrdem.tipo === 'venda' ? 'venda' : 'compra'
-        await axios.post(`http://localhost:3000/api/ordens/${endpoint}`, ordemData, config)
+        await axios.post(`/api/ordens/${endpoint}`, ordemData, config)
         
         this.showNovaOrdem = false
         this.novaOrdem = {

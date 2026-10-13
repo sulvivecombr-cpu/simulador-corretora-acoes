@@ -245,8 +245,8 @@ export default {
         }
 
         const [compraResponse, vendaResponse] = await Promise.all([
-          axios.get('http://localhost:3000/api/ordens/compra', config),
-          axios.get('http://localhost:3000/api/ordens/venda', config)
+          axios.get('/api/ordens/compra', config),
+          axios.get('/api/ordens/venda', config)
         ])
 
         const ordensCompra = compraResponse.data.map(ordem => ({ ...ordem, tipo: 'compra' }))
@@ -269,7 +269,7 @@ export default {
         }
         // Usa o minuto simulado se existir, senão o minuto atual
         const minuto = Number(localStorage.getItem('minutoSimulado')) || new Date().getMinutes();
-        const response = await axios.get(`http://localhost:3000/api/acoes?minuto=${minuto}`, config)
+        const response = await axios.get(`/api/acoes?minuto=${minuto}`, config)
         this.acoesDisponiveis = response.data.acoes // resposta é { acoes: [...] }
       } catch (error) {
         console.error('Erro ao carregar ações:', error)
@@ -297,7 +297,7 @@ export default {
         }
 
         const endpoint = this.novaOrdem.tipo === 'venda' ? 'venda' : 'compra'
-        await axios.post(`http://localhost:3000/api/ordens/${endpoint}`, ordemData, config)
+        await axios.post(`/api/ordens/${endpoint}`, ordemData, config)
         
         this.showNovaOrdem = false
         this.novaOrdem = {
@@ -325,7 +325,7 @@ export default {
             headers: { Authorization: `Bearer ${token}` }
           }
 
-          await axios.post(`http://localhost:3000/api/ordens/${ordem.tipo}/${ordem.id}/executar`, {}, config)
+          await axios.post(`/api/ordens/${ordem.tipo}/${ordem.id}/executar`, {}, config)
           
           alert('Ordem executada com sucesso!')
           await this.loadOrdens()
@@ -343,7 +343,7 @@ export default {
             headers: { Authorization: `Bearer ${token}` }
           }
 
-          await axios.delete(`http://localhost:3000/api/ordens/${ordem.tipo}/${ordem.id}`, config)
+          await axios.delete(`/api/ordens/${ordem.tipo}/${ordem.id}`, config)
           
           alert('Ordem cancelada com sucesso!')
           await this.loadOrdens()
