@@ -8,7 +8,7 @@ module.exports = defineConfig({
   devServer: {
     host: '0.0.0.0',
     port: 8080,
-    ...(isPreview ? { allowedHosts: 'all' } : {}),
+    ...(isPreview ? { allowedHosts: 'all', client: false } : {}),
     proxy: {
       '/api': {
         target: proxyTarget,
